@@ -6,9 +6,11 @@ public class Bird : MonoBehaviour {
 	private bool isDead = false;
 	private Rigidbody2D rb2d;
 	public float upForce = 200f;                   //Upward force of the "flap".
+	private Animator anim;
 	// Use this for initialization
 	void Start () {
 		rb2d = GetComponent<Rigidbody2D>();
+		anim = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -19,6 +21,7 @@ public class Bird : MonoBehaviour {
 				//  new Vector2(rb2d.velocity.x, 0);
 				//..giving the bird some upward force.
 				rb2d.AddForce(new Vector2(0, upForce));
+				anim.SetTrigger ("Flap");
 			}
 		}
 	}
@@ -26,5 +29,7 @@ public class Bird : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D other)
 	{
 		isDead = true;
+		anim.SetTrigger ("Die");
+		GameController.instance.BirdDied ();
 	}
 }

@@ -1,0 +1,25 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Colnmn : MonoBehaviour {
+	void OnTriggerEnter2D(Collider2D other)
+	{
+		if(other.GetComponent<Bird>() != null)
+		{
+			//If the bird hits the trigger collider in between the columns then
+			//tell the game control that the bird scored.
+			GameController.instance.BirdScored();
+		}
+	}
+
+	// Use this for initialization
+	void Start () {
+		
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		
+	}
+}
